@@ -6,6 +6,7 @@ import skimage.io as io
 import matplotlib.pyplot as plt
 import pylab
 pylab.rcParams['figure.figsize'] = (8.0, 10.0)
+import png
 
 
 
@@ -50,7 +51,7 @@ print('COCO supercategories: \n{}'.format(' '.join(nms)))
 # catIds = coco.getCatIds(catNms=['person','dog'])
 catIds = coco.getCatIds(catNms=['table'])
 imgIds = coco.getImgIds(catIds=catIds)
-# imgIds = coco.getImgIds(imgIds = [324158])
+imgIds = coco.getImgIds(imgIds = [724])
 img = coco.loadImgs(imgIds[np.random.randint(0,len(imgIds))])[0]
 
 
@@ -60,9 +61,9 @@ img = coco.loadImgs(imgIds[np.random.randint(0,len(imgIds))])[0]
 
 # %%
 # load and display image
-I = io.imread('%s/%s/%s'%(dataDir,dataType,img['file_name']))
+# I = io.imread('%s/%s/%s'%(dataDir,dataType,img['file_name']))
 # use url to load image
-# I = io.imread(img['coco_url'])
+I = io.imread(img['coco_url'])
 plt.axis('off')
 plt.imshow(I)
 plt.show()
@@ -78,7 +79,7 @@ plt.imshow(I); plt.axis('off')
 annIds = coco.getAnnIds(imgIds=img['id'], catIds=catIds, iscrowd=None)
 anns = coco.loadAnns(annIds)
 coco.showAnns(anns)
-
+coco.annToMask(anns[0])
 
 
 
@@ -126,5 +127,3 @@ plt.imshow(I); plt.axis('off'); plt.show()
 
 
 
-
-# %%
