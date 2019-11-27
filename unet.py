@@ -1,13 +1,15 @@
 #%%
 from keras_segmentation.models.unet import vgg_unet
+import ipykernel # to fix a bug with Keras verbose
+from keras_tqdm import TQDMNotebookCallback
 
 #%%
-model = vgg_unet(n_classes=91 ,  input_height=640, input_width=640)
+model = vgg_unet(n_classes=201 ,  input_height=640, input_width=640)
 
 model.train(
-    train_images =  "D:/val2017/",
-    train_annotations = "D:/DIP-Segmentation/annoted",
-    epochs=5
+    train_images =  "D:/processed/validation",
+    train_annotations = "D:/processed/semantic_validation",
+    epochs=10, steps_per_epoch=64
 )
 
 #%%

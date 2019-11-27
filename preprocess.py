@@ -10,7 +10,7 @@ duration = 1000  # Set Duration To 1000 ms == 1 second
 
 
 #%%
-dataDir='..'
+dataDir='D:/'
 dataType='val2017'
 annFile='{}/annotations/instances_{}.json'.format(dataDir,dataType)
 coco=COCO(annFile)
@@ -36,5 +36,3 @@ for img_id in tqdm(img_ids):
     png.from_array(anns_img.astype(int).tolist(), 'L').save("annoted/{:012d}.png".format(img['id']))
 winsound.Beep(frequency, duration)
 
-
-# %%
